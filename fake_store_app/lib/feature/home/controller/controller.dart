@@ -7,11 +7,6 @@ class AppController extends GetxController {
   IHomeService? homeService;
   List<dynamic> productModel = [];
 
-  // AppController() {
-  //   homeService = Get.find<IHomeService>();
-
-  //   fetchAllProduct();
-  // }
   @override
   void onInit() {
     super.onInit();

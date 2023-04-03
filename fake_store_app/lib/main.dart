@@ -1,7 +1,9 @@
-import 'package:fake_store_app/core/binding/controller_binding.dart';
-import 'package:fake_store_app/feature/home/view/home_view.dart';
+import 'package:fake_store_app/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'core/binding/controller_binding.dart';
+import 'feature/home/view/home_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,12 +11,12 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       initialBinding: AppControllerBindings(),
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: const ITheme().appTheme,
       home: const HomeView(),
     );
   }

@@ -41,7 +41,7 @@ class Products {
   String? brand;
   String? category;
   String? thumbnail;
-  List<String>? images;
+  String? images;
   bool? isSelected = false;
 
   Products(
@@ -69,7 +69,7 @@ class Products {
     brand = json['brand'];
     category = json['category'];
     thumbnail = json['thumbnail'];
-    images = json['images'] != null ? List<String>.from(json['images']) : null;
+    images = json['image'];
   }
 
   Map<String, dynamic> toJson() {
