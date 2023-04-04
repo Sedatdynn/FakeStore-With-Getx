@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../product/const/border/border_radi.dart';
+import '../../../product/const/image/image.dart';
+import '../../detail/home_detail.dart';
 import '../controller/controller.dart';
 
 class HomeView extends StatefulWidget {
@@ -26,10 +28,9 @@ class _HomeViewState extends State<HomeView> {
                   child: Column(
                     children: [
                       TextField(
-                        // controller: searchController,
-                        onChanged: (query) {
-                          // appController.filterProducts(query);
-                        },
+                        controller: appController.searchController,
+                        onChanged: (value) =>
+                            appController.setSearchQuery(value),
                         decoration: InputDecoration(
                           hintText: 'Search products...',
                           border: OutlineInputBorder(
@@ -41,54 +42,70 @@ class _HomeViewState extends State<HomeView> {
                       SizedBox(
                         height: context.dynamicHeight(0.85),
                         child: ListView.builder(
-                          itemCount: appController.productModel.length,
+                          itemCount: appController.filteredProducts.length,
                           itemBuilder: (context, index) {
-                            return Container(
-                              height: context.dynamicHeight(0.5),
-                              margin: context.lowAllPadding,
-                              decoration: const BoxDecoration(
-                                  color: AppColors.button,
-                                  borderRadius: BorderRadi.mediumCircular),
-                              child: Column(
-                                children: [
-                                  Image.network(
-                                    appController.productModel[index].images ??
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTREP28kiUI2Dha8oALRNBzTliKfvj6SUvtafsxlxZ4&s",
-                                    height: context.dynamicHeight(0.3),
-                                  ),
-                                  Text(
-                                    appController.productModel[index].title,
-                                    style:
-                                        Theme.of(context).textTheme.titleLarge,
-                                  ),
-                                  Text(
-                                    appController
-                                        .productModel[index].description,
-                                    maxLines: 2,
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        appController.productModel[index].price
-                                            .toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall,
-                                      ),
-                                      Text(
-                                        appController.productModel[index].rating
-                                            .toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall,
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeDetailView(
+                                          detailList: appController
+                                              .filteredProducts[index]),
+                                    ));
+                              },
+                              child: Container(
+                                height: context.dynamicHeight(0.5),
+                                margin: context.lowAllPadding,
+                                decoration: const BoxDecoration(
+                                    color: AppColors.button,
+                                    borderRadius: BorderRadi.mediumCircular),
+                                child: Column(
+                                  children: [
+                                    Image.network(
+                                      appController
+                                              .filteredProducts[index].images ??
+                                          ImageConst.instance.constImage,
+                                      height: context.dynamicHeight(0.3),
+                                    ),
+                                    Text(
+                                      appController
+                                          .filteredProducts[index].title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    Text(
+                                      appController
+                                          .filteredProducts[index].description,
+                                      maxLines: 2,
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          appController
+                                              .filteredProducts[index].price
+                                              .toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall,
+                                        ),
+                                        Text(
+                                          appController
+                                              .filteredProducts[index].rating
+                                              .toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
