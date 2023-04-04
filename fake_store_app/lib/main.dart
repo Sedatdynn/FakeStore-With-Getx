@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:fake_store_app/core/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,17 +15,12 @@ class MyApp extends StatelessWidget {
   final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return GetMaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routerConfig: _appRouter.config(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: AutoRouterDelegate(_appRouter),
       theme: const ITheme().appTheme,
-      builder: (context, child) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          initialBinding: AppControllerBindings(),
-          home: child!,
-        );
-      },
+      initialBinding: AppControllerBindings(),
     );
   }
 }

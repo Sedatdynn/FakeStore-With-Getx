@@ -9,6 +9,7 @@ extension ResponsiveExtension on BuildContext {
 
 extension AllPaddings on BuildContext {
   EdgeInsets get zeroAllPadding => const EdgeInsets.all(0);
+  EdgeInsets get extremeLowAllPadding => const EdgeInsets.all(4);
   EdgeInsets get lowAllPadding => const EdgeInsets.all(8);
   EdgeInsets get midAllPadding => const EdgeInsets.all(16);
   EdgeInsets get extremeAllPadding => const EdgeInsets.all(24);
@@ -22,6 +23,7 @@ extension HorizontalPadding on BuildContext {
 }
 
 extension VerticalPadding on BuildContext {
+  EdgeInsets get extremeLowVertical => const EdgeInsets.symmetric(vertical: 4);
   EdgeInsets get lowVertical => const EdgeInsets.symmetric(vertical: 8);
   EdgeInsets get midVertical => const EdgeInsets.symmetric(vertical: 16);
   EdgeInsets get extremeHorizontal => const EdgeInsets.symmetric(vertical: 24);

@@ -7,10 +7,29 @@ class ITheme {
   const ITheme();
 
   ThemeData get appTheme => ThemeData(
-      primarySwatch: AppColors.primarySwatch, appBarTheme: _appBarTheme);
+      primarySwatch: AppColors.primarySwatch,
+      appBarTheme: _appBarTheme,
+      textTheme: _textTheme,
+      iconTheme: _iconTheme);
 
-  AppBarTheme get _appBarTheme => const AppBarTheme(
+  AppBarTheme get _appBarTheme => AppBarTheme(
       elevation: 0,
       backgroundColor: AppColors.transparent,
-      iconTheme: IconThemeData(color: AppColors.mainPrimary));
+      iconTheme: _iconTheme);
+
+  IconThemeData get _iconTheme => const IconThemeData(color: AppColors.button);
+
+  TextTheme get _textTheme => const TextTheme(
+      titleLarge: TextStyle(
+        color: Colors.black54,
+        fontWeight: FontWeight.bold,
+      ),
+      titleMedium: TextStyle(
+        color: Colors.black54,
+        fontWeight: FontWeight.bold,
+      ),
+      titleSmall: TextStyle(
+        color: Colors.black54,
+        fontWeight: FontWeight.bold,
+      ));
 }
