@@ -3,21 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/binding/controller_binding.dart';
-import 'feature/home/view/home_view.dart';
+import 'core/navigator/app_route.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+  final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      initialBinding: AppControllerBindings(),
+      routerConfig: _appRouter.config(),
       theme: const ITheme().appTheme,
-      home: const HomeView(),
+      builder: (context, child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialBinding: AppControllerBindings(),
+          home: child!,
+        );
+      },
     );
   }
 }

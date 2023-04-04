@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:fake_store_app/core/navigator/app_route.gr.dart';
 import 'package:fake_store_app/product/const/responsive/responsive.dart';
 import 'package:fake_store_app/product/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import '../../../product/const/image/image.dart';
 import '../../detail/home_detail.dart';
 import '../controller/controller.dart';
 
+@RoutePage()
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
   @override
@@ -46,13 +49,9 @@ class _HomeViewState extends State<HomeView> {
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HomeDetailView(
-                                          detailList: appController
-                                              .filteredProducts[index]),
-                                    ));
+                                context.pushRoute(HomeDetailRoute(
+                                    detailList:
+                                        appController.filteredProducts[index]));
                               },
                               child: Container(
                                 height: context.dynamicHeight(0.5),
