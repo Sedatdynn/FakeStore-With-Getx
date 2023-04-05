@@ -15,15 +15,15 @@ FakeStore Application created with flutter using Getx.
  ## FakeStore-App Screenshots
  ### Home Pages
  
- ```
+
  <img src="https://i.ibb.co/qWmg9w1/Screenshot-1.png" width="180" height="380" />
 
  <img src="https://i.ibb.co/9rT3zwq/Screenshot-2.png" width="180" height="380" />
- ```
+
  <br />
  
  ### Home Detail Page
- ```
+
  <img src="https://i.ibb.co/hKcf3T2/Screenshot-4.png" width="180" height="380" />
- ```
+
  <br />
