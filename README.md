@@ -12,11 +12,14 @@ FakeStore Application created in flutter using Getx.
 * build_runner: (^2.3.3)
 ```
 
- ## Cafeteria-App Screenshots
+ ## FakeStore-App Screenshots
  ### Home Pages
  
  ```
  <img src="https://i.ibb.co/qWmg9w1/Screenshot-1.png" width="180" height="380" />
+ ```
+ 
+ ```
  <img src="https://i.ibb.co/9rT3zwq/Screenshot-2.png" width="180" height="380" />
  ```
  <br />
