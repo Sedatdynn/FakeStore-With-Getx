@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import '../model/home_model.dart';
-import 'i_home_service.dart';
+import '../home_shelf.dart';
 
 class HomeService extends IHomeService {
   HomeService(Dio dio) : super(dio);

@@ -1,13 +1,11 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:fake_store_app/product/const/responsive/responsive.dart';
-import 'package:fake_store_app/product/const/text/app_text.dart';
-import 'package:fake_store_app/product/widget/text/product_text.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import '../../packages_shelf.dart';
+import '../../product/const/const_shelf.dart';
 
-import '../../product/const/border/border_radi.dart';
-import '../../product/enums/images/png_enums.dart';
+import 'package:flutter/material.dart';
+
+import '../../product/enums/enums_shelf.dart';
 import '../../product/theme/colors.dart';
+import '../../product/widget/widget_shelf.dart';
 
 @RoutePage()
 class HomeDetailView extends StatefulWidget {

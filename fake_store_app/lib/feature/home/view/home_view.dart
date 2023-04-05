@@ -1,18 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../core/navigator/app_route.gr.dart';
-import '../../../product/const/border/border_radi.dart';
-import '../../../product/const/image/image.dart';
-import '../../../product/const/responsive/responsive.dart';
-import '../../../product/const/text/app_text.dart';
-import '../../../product/enums/images/png_enums.dart';
+import '../../../packages_shelf.dart';
+import '../../../product/const/const_shelf.dart';
+import '../../../product/enums/enums_shelf.dart';
 import '../../../product/theme/colors.dart';
-import '../../../product/widget/loading/loading_view.dart';
-import '../../../product/widget/text/product_text.dart';
-import '../../../product/widget/textfield/search_textfield.dart';
-import '../controller/controller.dart';
+import '../../../product/widget/widget_shelf.dart';
+import '../home_shelf.dart';
 
 @RoutePage()
 class HomeView extends StatefulWidget {

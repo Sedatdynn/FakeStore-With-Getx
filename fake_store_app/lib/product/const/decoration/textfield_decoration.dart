@@ -1,9 +1,7 @@
-import 'package:fake_store_app/product/const/responsive/responsive.dart';
-import 'package:fake_store_app/product/const/text/app_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/colors.dart';
-import '../border/border_radi.dart';
+import '../const_shelf.dart';
 
 class SearchTextFieldDecoration extends InputDecoration {
   SearchTextFieldDecoration(BuildContext context, IconData? icon)

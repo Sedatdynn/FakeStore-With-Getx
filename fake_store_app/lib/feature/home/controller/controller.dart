@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../service/i_home_service.dart';
+import '../../../packages_shelf.dart';
+import '../home_shelf.dart';
 
 class AppController extends GetxController {
   TextEditingController searchController = TextEditingController();

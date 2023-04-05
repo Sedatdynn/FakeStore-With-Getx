@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../../product/enums/requests/requests.dart';
+import '../../../product/enums/enums_shelf.dart';
 
 abstract class IHomeService {
   IHomeService(this.dio);

@@ -1,5 +1,6 @@
-import 'package:fake_store_app/product/theme/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../theme/colors.dart';
 
 class LoadingView extends StatelessWidget {
   const LoadingView({

@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:fake_store_app/core/theme/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'core/binding/controller_binding.dart';
 import 'core/navigator/app_route.dart';
+import 'core/theme/theme.dart';
+import 'packages_shelf.dart';
 
 void main() {
   runApp(MyApp());

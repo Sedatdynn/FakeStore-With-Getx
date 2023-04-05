@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../const/decoration/textfield_decoration.dart';
+import '../../const/const_shelf.dart';
 import '../../theme/colors.dart';
 
 class SearchTextField extends StatelessWidget {

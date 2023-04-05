@@ -1,5 +1,5 @@
+import '../../../packages_shelf.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ProductText extends StatelessWidget {
   final TextStyle? style;

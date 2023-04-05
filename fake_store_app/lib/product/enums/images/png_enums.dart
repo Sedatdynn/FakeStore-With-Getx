@@ -1,4 +1,4 @@
-import 'package:fake_store_app/product/const/responsive/responsive.dart';
+import '../../const/const_shelf.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/colors.dart';

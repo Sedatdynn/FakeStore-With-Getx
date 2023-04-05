@@ -1,8 +1,6 @@
-import '../../feature/home/controller/controller.dart';
-import '../../feature/home/service/home_service.dart';
-import '../../feature/home/service/i_home_service.dart';
+import '../../feature/home/home_shelf.dart';
+import '../../packages_shelf.dart';
 import '../../product/service/network_manager.dart';
-import 'package:get/get.dart';
 
 class AppControllerBindings extends Bindings {
   @override
