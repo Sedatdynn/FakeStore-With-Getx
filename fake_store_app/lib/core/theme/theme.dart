@@ -21,15 +21,15 @@ class ITheme {
 
   TextTheme get _textTheme => const TextTheme(
       titleLarge: TextStyle(
-        color: Colors.black54,
+        color: AppColors.textColor,
         fontWeight: FontWeight.bold,
       ),
       titleMedium: TextStyle(
-        color: Colors.black54,
+        color: AppColors.textColor,
         fontWeight: FontWeight.bold,
       ),
       titleSmall: TextStyle(
-        color: Colors.black54,
+        color: AppColors.textColor,
         fontWeight: FontWeight.bold,
       ));
 }
