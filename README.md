@@ -27,3 +27,11 @@ FakeStore Application created with flutter using Getx.
  <img src="https://i.ibb.co/hKcf3T2/Screenshot-4.png" width="180" height="380" />
 
  <br />
+ 
+ ### Home Search Product
+ * Searching  for products by titles
+
+ <img src="https://i.ibb.co/mt9SmbJ/1-search.png" width="180" height="380" />
+ <img src="https://i.ibb.co/xhrGYcb/search-2.png" width="180" height="380" />
+ 
+
