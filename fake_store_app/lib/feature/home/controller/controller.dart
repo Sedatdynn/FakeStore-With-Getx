@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../packages_shelf.dart';
+import '../../../product/utility/loading.dart';
 import '../home_shelf.dart';
 
-class AppController extends GetxController {
+class AppController extends LoadingStateful {
   TextEditingController searchController = TextEditingController();
-  RxBool isLoading = false.obs;
   IHomeService? homeService;
   List<dynamic> productModel = <dynamic>[].obs;
   var searchQuery = "".obs;
@@ -19,11 +19,11 @@ class AppController extends GetxController {
 
   Future<void> fetchAllProduct() async {
     try {
-      showLoading();
+      changeLoading;
       productModel = (await homeService!.fetchProductItems()) ?? [];
-      hideLoading();
+      changeLoading;
     } catch (e) {
-      print("Error fetching products: $e");
+      rethrow;
     }
   }
 
@@ -42,7 +42,4 @@ class AppController extends GetxController {
   void setSearchQuery(String query) {
     searchQuery.value = query;
   }
-
-  void showLoading() => isLoading.toggle();
-  void hideLoading() => isLoading.toggle();
 }

@@ -11,9 +11,10 @@ class HomeService extends IHomeService {
   Future<List<dynamic>> fetchProductItems() async {
     try {
       final response = await dio.get(homePath);
-      var resData = response.data;
+      final resData = response.data;
       if (response.statusCode == HttpStatus.ok) {
-        var products = resData.map((item) => Products.fromJson(item)).toList();
+        final products =
+            resData.map((item) => Products.fromJson(item)).toList();
         return products;
       }
     } catch (e) {

@@ -27,7 +27,7 @@ class _HomeViewState extends State<HomeView> {
       drawer: const Drawer(),
       appBar: buildCustomAppBar(),
       body: Obx(
-        () => appController.isLoading.isTrue
+        () => appController.isLoading.value
             ? const LoadingView()
             : Padding(
                 padding: context.lowAllPadding,
@@ -59,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
           buildSearchTextfield(appController),
           SizedBox(height: context.dynamicHeight(0.01)),
           SizedBox(
-            height: context.dynamicHeight(0.72),
+            height: context.dynamicHeight(0.75),
             child: buildListViewBody(appController),
           ),
         ],
