@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/init/base/viewModel/base_view_model.dart';
+import '../../../core/init/notifier/theme_notifier.dart';
 import '../../../packages_shelf.dart';
 import '../../../product/utility/loading.dart';
 import '../home_shelf.dart';
+import 'package:provider/provider.dart';
 
-class AppController extends LoadingStateful {
+// LoadingStateful with
+class AppController extends LoadingStateful with BaseViewModel {
   TextEditingController searchController = TextEditingController();
   IHomeService? homeService;
   List<dynamic> productModel = <dynamic>[].obs;
   var searchQuery = "".obs;
 
   @override
-  void onInit() {
-    super.onInit();
+  void setContext(BuildContext context) => this.context = context;
+  @override
+  void init() {
     homeService = Get.find<IHomeService>();
     fetchAllProduct();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    init();
   }
 
   Future<void> fetchAllProduct() async {
@@ -41,5 +52,11 @@ class AppController extends LoadingStateful {
 
   void setSearchQuery(String query) {
     searchQuery.value = query;
+  }
+
+  void changeTheme(BuildContext context) {
+    print("Change");
+    context.read<ThemeNotifier>().changeTheme();
+    update();
   }
 }

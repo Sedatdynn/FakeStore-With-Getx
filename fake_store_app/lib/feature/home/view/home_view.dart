@@ -1,3 +1,4 @@
+import 'package:fake_store_app/core/init/base/view/base_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/navigator/app_route.gr.dart';
@@ -9,47 +10,52 @@ import '../../../product/widget/widget_shelf.dart';
 import '../home_shelf.dart';
 
 @RoutePage()
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
+
   @override
-  State<HomeView> createState() => _HomeViewState();
-}
+  Widget build(BuildContext context) => BaseView<AppController>(
+      viewModel: AppController(),
+      onInitState: (model) {
+        model.setContext(context);
+        model.init();
+      },
+      safeArea: true,
+      onPageBuilder: (context, value) {
+        final AppController appController = Get.find<AppController>();
 
-class _HomeViewState extends State<HomeView> {
-  @override
-  Widget build(BuildContext context) {
-    final appController = Get.find<AppController>();
-    return buildScaffold(appController, context);
-  }
+        return Scaffold(
+          drawer: const Drawer(),
+          appBar: buildCustomAppBar(context, appController),
+          body: Obx(
+            () => appController.isLoading.value
+                ? const LoadingView()
+                : Padding(
+                    padding: context.lowAllPadding,
+                    child: buildScrollView(context, appController),
+                  ),
+          ),
+        );
+      });
 
-  Scaffold buildScaffold(AppController appController, BuildContext context) {
-    return Scaffold(
-      drawer: const Drawer(),
-      appBar: buildCustomAppBar(),
-      body: Obx(
-        () => appController.isLoading.value
-            ? const LoadingView()
-            : Padding(
-                padding: context.lowAllPadding,
-                child: buildScrollView(context, appController),
-              ),
-      ),
-    );
-  }
-
-  AppBar buildCustomAppBar() {
+  AppBar buildCustomAppBar(BuildContext context, AppController appController) {
     return AppBar(
       actions: [
         IconButton(
-          icon: const Icon(Icons.account_circle),
-          onPressed: () {},
+          icon: const Icon(
+            Icons.settings,
+            // color: AppColors.primarySwatch,
+          ),
+          onPressed: () {
+            appController.changeTheme(context);
+            // context.pushRoute(const SettingsRoute());
+          },
         ),
       ],
     );
   }
 
-  SingleChildScrollView buildScrollView(
-      BuildContext context, AppController appController) {
+  Widget buildScrollView(BuildContext context, AppController appController) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +73,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  SearchTextField buildSearchTextfield(AppController appController) {
+  Widget buildSearchTextfield(AppController appController) {
     return SearchTextField(
       onChange: (value) => appController.setSearchQuery(value),
       controller: appController.searchController,
@@ -75,7 +81,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  ListView buildListViewBody(AppController appController) {
+  Widget buildListViewBody(AppController appController) {
     return ListView.builder(
       itemCount: appController.filteredProducts.length,
       itemBuilder: (context, index) {
@@ -90,7 +96,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Container buildMainProductField(
+  Widget buildMainProductField(
       BuildContext context, AppController appController, int index) {
     return Container(
       height: context.dynamicHeight(0.45),
@@ -104,7 +110,7 @@ class _HomeViewState extends State<HomeView> {
         children: [
           buildImageField(context, appController, index),
           SizedBox(height: context.dynamicHeight(0.01)),
-          buildTitleText(appController, index),
+          buildTitleText(appController, context, index),
           SizedBox(height: context.dynamicHeight(0.01)),
           buildDescriptionText(appController, index, context),
           SizedBox(height: context.dynamicHeight(0.01)),
@@ -115,7 +121,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Container buildImageField(
+  Widget buildImageField(
       BuildContext context, AppController appController, int index) {
     return Container(
       decoration: const BoxDecoration(
@@ -125,16 +131,17 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  buildNetworkImage(
+  Widget buildNetworkImage(
       AppController appController, int index, BuildContext context) {
     return Image.network(
-        appController.filteredProducts[index].images ??
+        appController.filteredProducts[index].image ??
             ImageConst.instance.constImage,
         height: context.dynamicHeight(0.18),
         width: context.dynamicWidth(0.9));
   }
 
-  buildTitleText(AppController appController, int index) {
+  Widget buildTitleText(
+      AppController appController, BuildContext context, int index) {
     return Padding(
       padding: context.extremeLowAllPadding,
       child: ProductText(
@@ -144,7 +151,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  buildDescriptionText(
+  Widget buildDescriptionText(
       AppController appController, int index, BuildContext context) {
     return Padding(
       padding: context.extremeLowAllPadding,
@@ -158,7 +165,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Row buildBottomField(
+  Widget buildBottomField(
       BuildContext context, AppController appController, int index) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -169,7 +176,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Row buildPriceField(
+  Widget buildPriceField(
       BuildContext context, AppController appController, int index) {
     return Row(
       children: [
@@ -181,7 +188,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Row buildRateField(
+  Widget buildRateField(
       BuildContext context, AppController appController, int index) {
     return Row(
       children: [

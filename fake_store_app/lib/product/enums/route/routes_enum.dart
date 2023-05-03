@@ -1,7 +1,7 @@
 enum RouteEnum {
-  products('products'),
   search('search'),
-  detail('details');
+  detail('details'),
+  settings('settings');
 
   const RouteEnum(this.value);
   final String value;

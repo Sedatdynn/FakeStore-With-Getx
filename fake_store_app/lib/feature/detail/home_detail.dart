@@ -8,29 +8,26 @@ import '../../product/theme/colors.dart';
 import '../../product/widget/widget_shelf.dart';
 
 @RoutePage()
-class HomeDetailView extends StatefulWidget {
+class HomeDetailView extends StatelessWidget {
   final dynamic detailList;
   const HomeDetailView({Key? key, required this.detailList}) : super(key: key);
-  @override
-  State<HomeDetailView> createState() => _HomeDetailViewState();
-}
-
-class _HomeDetailViewState extends State<HomeDetailView> {
   @override
   Widget build(BuildContext context) {
     return buildScaffoldBody(context);
   }
 
-  Scaffold buildScaffoldBody(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.white,
-        body: Padding(
-          padding: context.midAllPadding,
-          child: buildListViewBody(context),
-        ));
+  Widget buildScaffoldBody(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: AppColors.white,
+          body: Padding(
+            padding: context.midAllPadding,
+            child: buildListViewBody(context),
+          )),
+    );
   }
 
-  ListView buildListViewBody(BuildContext context) {
+  Widget buildListViewBody(BuildContext context) {
     return ListView(
       children: [
         Stack(
@@ -43,7 +40,7 @@ class _HomeDetailViewState extends State<HomeDetailView> {
     );
   }
 
-  Center buildProductField(BuildContext context) {
+  Widget buildProductField(BuildContext context) {
     return Center(
       child: Container(
         width: context.dynamicWidth(0.9),
@@ -57,7 +54,7 @@ class _HomeDetailViewState extends State<HomeDetailView> {
               padding: context.lowAllPadding,
               child: Column(
                 children: [
-                  buildTitleText(),
+                  buildTitleText,
                   SizedBox(
                     height: context.dynamicHeight(0.02),
                   ),
@@ -76,7 +73,7 @@ class _HomeDetailViewState extends State<HomeDetailView> {
     );
   }
 
-  Container buildImageField(BuildContext context) {
+  Widget buildImageField(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
           color: AppColors.white, borderRadius: BorderRadi.lowCircular),
@@ -86,65 +83,66 @@ class _HomeDetailViewState extends State<HomeDetailView> {
     );
   }
 
-  ClipRRect buildClipImage(BuildContext context) {
+  Widget buildClipImage(BuildContext context) {
     return ClipRRect(
         borderRadius: BorderRadi.medHighCircular,
         child: Image.network(
-          widget.detailList.images,
+          detailList.image,
           height: context.dynamicHeight(0.5),
           width: context.dynamicWidth(0.8),
         ));
   }
 
-  ProductText buildTitleText() {
-    return ProductText(
-      text: widget.detailList.title,
-      color: AppColors.button,
-    );
-  }
+  Widget get buildTitleText => ProductText(
+        text: detailList.title,
+        color: AppColors.button,
+      );
 
-  ProductText buildDescriptionText(BuildContext context) {
+  Widget buildDescriptionText(BuildContext context) {
     return ProductText(
-      text: widget.detailList.description,
+      text: detailList.description,
       style: context.textTheme.titleMedium,
       textAlign: TextAlign.justify,
     );
   }
 
-  Row buildBottomField(BuildContext context) {
+  Widget buildBottomField(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        buildPriceField(context),
-        SizedBox(
-          height: context.dynamicHeight(0.1),
-        ),
-        buildRateField(context),
-      ],
-    );
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: bodyChildren(context));
   }
 
-  Row buildPriceField(BuildContext context) {
+  List<Widget> bodyChildren(BuildContext context) {
+    return <Widget>[
+      buildPriceField(context),
+      SizedBox(
+        height: context.dynamicHeight(0.1),
+      ),
+      buildRateField(context),
+    ];
+  }
+
+  Widget buildPriceField(BuildContext context) {
     return Row(
       children: [
         ImagePath.price.toPng(context),
         ProductText(
-          text: widget.detailList.price.toString(),
+          text: detailList.price.toString(),
         )
       ],
     );
   }
 
-  Row buildRateField(BuildContext context) {
+  Widget buildRateField(BuildContext context) {
     return Row(
       children: [
         ImagePath.rate.toPng(context),
-        ProductText(text: widget.detailList.rating["rate"].toString())
+        ProductText(text: detailList.rating["rate"].toString())
       ],
     );
   }
 
-  IconButton buildIconButton(BuildContext context) {
+  Widget buildIconButton(BuildContext context) {
     return IconButton(
       onPressed: () {
         Navigator.pop(context);
@@ -156,14 +154,14 @@ class _HomeDetailViewState extends State<HomeDetailView> {
     );
   }
 
-  Container buildCategoryField(BuildContext context) {
+  Widget buildCategoryField(BuildContext context) {
     return Container(
         padding: context.lowAllPadding,
         decoration: const BoxDecoration(
             color: AppColors.button, borderRadius: BorderRadi.lowCircular),
         width: context.dynamicWidth(0.9),
         child: ProductText(
-          text: AppText.category + widget.detailList.category,
+          text: AppText.category + detailList.category,
           color: AppColors.lightGrey,
         ));
   }

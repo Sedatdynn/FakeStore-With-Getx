@@ -36,6 +36,7 @@ dependencies:
   get: ^4.6.5
   json_annotation: ^4.8.0
   json_serializable: ^6.6.1
+  provider: ^6.0.5
 
 dev_dependencies:
   auto_route_generator: ^6.0.3

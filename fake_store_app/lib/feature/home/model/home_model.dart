@@ -1,35 +1,40 @@
-class ProductModel {
-  List<Products>? products;
+import 'package:json_annotation/json_annotation.dart';
+
+import '../../../core/init/base/model/base_model.dart';
+
+part 'home_model.g.dart';
+
+@JsonSerializable()
+class ProductModel extends BaseModel {
+  List<dynamic>? products;
 
   ProductModel({this.products});
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
-    if (json['products'] != null) {
-      products = <Products>[];
-      json['products'].forEach((v) {
-        products!.add(Products.fromJson(v));
-      });
-    }
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProductModelToJson(this);
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (products != null) {
-      data['products'] = products!.map((v) => v.toJson()).toList();
-    }
+  @override
+  fromJson(Map<String, dynamic> json) {
+    return _$ProductModelFromJson(json);
+  }
 
-    return data;
+  @override
+  createObject() {
+    return ProductModel();
   }
 }
 
-class Products {
+@JsonSerializable()
+class Products extends BaseModel {
   dynamic id;
   String? title;
   String? description;
   dynamic price;
   dynamic rating;
   String? category;
-  String? images;
+  String? image;
 
   Products({
     this.id,
@@ -38,28 +43,21 @@ class Products {
     this.price,
     this.rating,
     this.category,
-    this.images,
+    this.image,
   });
 
-  Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    description = json['description'];
-    price = json['price'];
-    rating = json['rating'];
-    category = json['category'];
-    images = json['image'];
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProductsToJson(this);
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['description'] = description;
-    data['price'] = price;
-    data['rating'] = rating;
-    data['category'] = category;
-    data['images'] = images;
-    return data;
+  @override
+  fromJson(Map<String, dynamic> json) {
+    return _$ProductsFromJson(json);
+  }
+
+  @override
+  createObject() {
+    return ProductModel();
   }
 }

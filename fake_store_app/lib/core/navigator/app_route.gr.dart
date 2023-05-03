@@ -8,20 +8,21 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:fake_store_app/feature/detail/home_detail.dart' as _i1;
 import 'package:fake_store_app/feature/home/view/home_view.dart' as _i2;
-import 'package:flutter/material.dart' as _i4;
+import 'package:fake_store_app/feature/settings/view/settings_view.dart' as _i3;
+import 'package:flutter/material.dart' as _i5;
 
-abstract class $AppRouter extends _i3.RootStackRouter {
-  $AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
+abstract class $AppRouter extends _i4.RootStackRouter {
+  $AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
+  final Map<String, _i4.PageFactory> pagesMap = {
     HomeDetailRoute.name: (routeData) {
       final args = routeData.argsAs<HomeDetailRouteArgs>();
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.HomeDetailView(
           key: args.key,
@@ -30,9 +31,15 @@ abstract class $AppRouter extends _i3.RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
-      return _i3.AutoRoutePage<dynamic>(
+      return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.HomeView(),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      return _i4.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.SettingsView(),
       );
     },
   };
@@ -40,11 +47,11 @@ abstract class $AppRouter extends _i3.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomeDetailView]
-class HomeDetailRoute extends _i3.PageRouteInfo<HomeDetailRouteArgs> {
+class HomeDetailRoute extends _i4.PageRouteInfo<HomeDetailRouteArgs> {
   HomeDetailRoute({
-    _i4.Key? key,
+    _i5.Key? key,
     required dynamic detailList,
-    List<_i3.PageRouteInfo>? children,
+    List<_i4.PageRouteInfo>? children,
   }) : super(
           HomeDetailRoute.name,
           args: HomeDetailRouteArgs(
@@ -56,8 +63,8 @@ class HomeDetailRoute extends _i3.PageRouteInfo<HomeDetailRouteArgs> {
 
   static const String name = 'HomeDetailRoute';
 
-  static const _i3.PageInfo<HomeDetailRouteArgs> page =
-      _i3.PageInfo<HomeDetailRouteArgs>(name);
+  static const _i4.PageInfo<HomeDetailRouteArgs> page =
+      _i4.PageInfo<HomeDetailRouteArgs>(name);
 }
 
 class HomeDetailRouteArgs {
@@ -66,7 +73,7 @@ class HomeDetailRouteArgs {
     required this.detailList,
   });
 
-  final _i4.Key? key;
+  final _i5.Key? key;
 
   final dynamic detailList;
 
@@ -78,8 +85,8 @@ class HomeDetailRouteArgs {
 
 /// generated route for
 /// [_i2.HomeView]
-class HomeRoute extends _i3.PageRouteInfo<void> {
-  const HomeRoute({List<_i3.PageRouteInfo>? children})
+class HomeRoute extends _i4.PageRouteInfo<void> {
+  const HomeRoute({List<_i4.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -87,5 +94,19 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i3.PageInfo<void> page = _i3.PageInfo<void>(name);
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.SettingsView]
+class SettingsRoute extends _i4.PageRouteInfo<void> {
+  const SettingsRoute({List<_i4.PageRouteInfo>? children})
+      : super(
+          SettingsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsRoute';
+
+  static const _i4.PageInfo<void> page = _i4.PageInfo<void>(name);
 }

@@ -12,5 +12,6 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     AutoRoute(page: HomeRoute.page, path: "/"),
     AutoRoute(page: HomeDetailRoute.page, path: RouteEnum.detail.withSlash),
+    AutoRoute(page: SettingsRoute.page, path: RouteEnum.settings.withSlash),
   ];
 }
